@@ -14,7 +14,7 @@ public class Platform2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(platformCollider, new Vector3(transform.position.x, transform.position.y - heightDifference, 
+        Instantiate(platformCollider, new Vector3(transform.position.x, transform.position.y - heightDifference,
             transform.position.z), Quaternion.identity);
         rbd = gameObject.GetComponent<Rigidbody>();
         initialRotation = rbd.transform.rotation;
@@ -25,7 +25,7 @@ public class Platform2 : MonoBehaviour
         if (!collide && reset)
         {
             float angle = Quaternion.Angle(initialRotation, rbd.transform.rotation);
-            Debug.Log(angle);
+            //Debug.Log(angle);
             if (angle < 360-angleTolerance && angle > angleTolerance)
             {
                 rbd.transform.rotation = Quaternion.Lerp(rbd.transform.rotation, initialRotation, Time.fixedDeltaTime * 5);

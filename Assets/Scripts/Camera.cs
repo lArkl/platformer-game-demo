@@ -2,22 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Camera : MonoBehaviour
 {
-
-    Transform tran;
-    float init;
+    public GameObject player;
+    Vector3 offset;
     // Start is called before the first frame update
     void Start()
     {
-        tran = gameObject.GetComponent<Transform>();
-        init = tran.position.z/10;
+        offset = transform.position - player.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        tran.Rotate(0,0, init + Time.deltaTime * 200);
+        transform.position = offset + player.transform.position;
     }
-
 }

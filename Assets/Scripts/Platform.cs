@@ -7,7 +7,7 @@ public class Platform : MonoBehaviour
 
     Rigidbody rbd;
     Vector3 initialPosition, initialAngVel;
-    Quaternion initialRotation, prevRotation;
+    Quaternion initialRotation;
     Vector3 angleRot;
     public bool collide;
     public bool rotating;
@@ -74,7 +74,7 @@ public class Platform : MonoBehaviour
         if (angle > maxAngle || angle < -maxAngle)
         {
             Debug.Log(angle);
-            rbd.rotation = prevRotation;
+            //rbd.rotation = prevRotation;
             //rbd.angularVelocity = initialAngVel;
         }
     }

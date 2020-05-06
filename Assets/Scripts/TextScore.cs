@@ -1,23 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Coin : MonoBehaviour
+public class TextScore : MonoBehaviour
 {
-
-    Transform tran;
-    float init;
+    Text text;
     // Start is called before the first frame update
     void Start()
     {
-        tran = gameObject.GetComponent<Transform>();
-        init = tran.position.z/10;
+        text = gameObject.GetComponent<Text>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        tran.Rotate(0,0, init + Time.deltaTime * 200);
+        text.text = "Score: " + ScoreKeeper.points;
     }
-
 }
