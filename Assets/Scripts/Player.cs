@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     Rigidbody rbd;
     public int maxJumps;
     int jumpCount;
-    public int points;
 
     public float planningHeight;
 
@@ -83,7 +82,6 @@ public class Player : MonoBehaviour
         {
             ScoreKeeper.OnDeath();
             SceneManager.LoadScene("SampleScene");
-            points = 0;
         }
 
     }
@@ -114,8 +112,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Coin"))
         {
-            points++;
-            ScoreKeeper.points = points;
+            ScoreKeeper.coins++;
             other.gameObject.SetActive(false);
         }
         if (other.CompareTag("Power")) {

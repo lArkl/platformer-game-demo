@@ -126,6 +126,7 @@ MonoBehaviour:
   platRef: {fileID: 0}
   heightDifference: 0.2
   movespeed: 3
+  returnspeed: 4
   collide: 0
   reset: 0
-  maxAngle: 0
+  returning: 0

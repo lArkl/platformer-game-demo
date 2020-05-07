@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlatformMov : MonoBehaviour
 {
     public GameObject platformCollider, platRef;
-    public float heightDifference, movespeed;
-    public bool collide, reset;
+    public float heightDifference, movespeed, returnspeed;
+    public bool collide, reset, returning;
     Rigidbody rbd;
     Quaternion initialRotation;
-    Vector3 prevPosition;
+    Vector3 initialPosition, returnVector;
 
     Transform refTran;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class PlatformMov : MonoBehaviour
         platRef = Instantiate(platformCollider, new Vector3(rbd.transform.position.x, rbd.transform.position.y - heightDifference,
             rbd.transform.position.z), Quaternion.identity);
         initialRotation = rbd.transform.rotation;
-        prevPosition = rbd.transform.position;
+        initialPosition = rbd.transform.position;
         //Debug.Log(rbd.transform.eulerAngles);
 
         refTran = null;
@@ -41,10 +42,22 @@ public class PlatformMov : MonoBehaviour
                 rbd.angularVelocity = Vector3.zero;
                 rbd.transform.rotation = initialRotation;
                 rbd.velocity = Vector3.zero;
-                prevPosition = rbd.transform.position;
-
+                returnVector = (initialPosition - rbd.transform.position).normalized;
             }
 
+            if (refTran!=null && rbd.transform.position.y - refTran.position.y > 1)
+            {
+                returning = true;
+                refTran = null;
+                //posible bug con el movimiento del player :v!
+            }
+
+            if (returning)
+            {
+                rbd.transform.position += returnVector * returnspeed * Time.deltaTime;
+                if((initialPosition - rbd.transform.position).sqrMagnitude < 0.25)
+                    returning = false;
+            }
         }
         else
         {
@@ -69,7 +82,6 @@ public class PlatformMov : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            refTran = null;
             collide = false;
             reset = true;
         }

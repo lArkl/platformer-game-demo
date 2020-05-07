@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextPower : MonoBehaviour
+public class TextJumps : MonoBehaviour
 {
     Text text;
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class TextPower : MonoBehaviour
     void Update()
     {
         if (ScoreKeeper.extraJumps > 0)
-            text.text = ScoreKeeper.extraJumps + " Extra Jump";
+            text.text = "+" + ScoreKeeper.extraJumps + " Jump";
         else
             text.text = "";
     }
