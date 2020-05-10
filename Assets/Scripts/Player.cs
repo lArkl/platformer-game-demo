@@ -48,19 +48,18 @@ public class Player : MonoBehaviour
             if (onGround > 0)
             {
                 jumpCount = 0;
+                maxJumps = ScoreKeeper.extraJumps + 1;
             }
-            jumpCount++;
-            if (jumpCount <= maxJumps)
+            if (jumpCount < maxJumps)
             {
                 rbd.AddForce(new Vector3(0, 1, 0) * jumpForce, ForceMode.Impulse);
+                jumpCount++;
                 if (jumpCount > 1)
                 {
-                    jumpCount--;
-                    maxJumps--;
-                    ScoreKeeper.extraJumps = maxJumps - 1;
+                    ScoreKeeper.extraJumps--;
                 }
             }
-
+            Debug.Log(jumpCount + ":" + maxJumps);
         }
 
         //Habilitamos el planeo
@@ -69,6 +68,7 @@ public class Player : MonoBehaviour
             if (rbd.velocity.y < 0) {
                 rbd.transform.localScale = planningSize;
                 Physics.gravity = initialGravity * 0.15f;
+                rbd.velocity /= 2;
             }
         }
         if (Input.GetKeyUp(KeyCode.G) || onGround > 0)
@@ -117,8 +117,8 @@ public class Player : MonoBehaviour
         }
         if (other.CompareTag("Power")) {
             other.gameObject.SetActive(false);
+            ScoreKeeper.extraJumps++;
             maxJumps++;
-            ScoreKeeper.extraJumps = maxJumps - 1;
         }
     }
 
