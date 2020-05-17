@@ -12,6 +12,7 @@ public class PlatformMov : MonoBehaviour
     Vector3 initialPosition, returnVector;
 
     Transform refTran;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class PlatformMov : MonoBehaviour
         initialRotation = rbd.transform.rotation;
         initialPosition = rbd.transform.position;
         //Debug.Log(rbd.transform.eulerAngles);
-
+        audioSource = gameObject.GetComponent<AudioSource>();
         refTran = null;
     }
 
@@ -73,7 +74,9 @@ public class PlatformMov : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             refTran = collision.transform;
-            collision.transform.localScale = Vector3.one;
+
+            audioSource.Play();
+            //collision.transform.localScale = Vector3.one;
             collide = true;
         }
     }
@@ -82,6 +85,7 @@ public class PlatformMov : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
+            audioSource.Stop();
             collide = false;
             reset = true;
         }
