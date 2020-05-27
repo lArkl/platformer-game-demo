@@ -12,6 +12,7 @@ public class CanvasOptions : MonoBehaviour
     {
         if (ScoreKeeper.deaths == 0)
             controlsPanel.SetActive(true);
+        ChangeGameState(false);
     }
 
     // Update is called once per frame

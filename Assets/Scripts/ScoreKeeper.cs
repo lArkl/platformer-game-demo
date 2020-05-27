@@ -21,4 +21,10 @@ public class ScoreKeeper : MonoBehaviour
         extraJumps = 0;
         deaths++;
     }
+
+    public static void OnReset()
+    {
+        OnDeath();
+        deaths = 0;
+    }
 }

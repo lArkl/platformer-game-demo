@@ -33,6 +33,8 @@ public class PauseMenu : MonoBehaviour
 
     public void BackTitle()
     {
+        //ScoreKeeper.Destroy();
+        ScoreKeeper.OnReset();
         SceneManager.LoadScene("Menu");
     }
 }

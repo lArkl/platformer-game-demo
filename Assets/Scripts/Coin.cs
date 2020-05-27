@@ -15,9 +15,9 @@ public class Coin : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        tran.Rotate(0,0, init + Time.deltaTime * 200);
+        tran.Rotate(0,0, init + Time.fixedDeltaTime * 200);
     }
 
 }
